@@ -9,12 +9,16 @@ import SwiftUI
 
 @main
 struct Any_WordApp: App {
-    let persistenceController = PersistenceController.shared
-
+//    let persistenceController = PersistenceController.shared
+    
+    @Environment(\.scenePhase) var scenePhase
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+            StartView()
+                .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
         }
+//        .onChange(of: scenePhase) { _ in persistenceController.save() }
     }
 }
+

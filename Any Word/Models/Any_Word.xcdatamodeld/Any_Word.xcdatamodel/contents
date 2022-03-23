@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="20086" systemVersion="21E230" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Dict" representedClassName="Dict" syncable="YES" codeGenerationType="class">
+        <attribute name="nameDict" optional="YES" attributeType="String"/>
+        <relationship name="relationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WordOther" inverseName="relationship" inverseEntity="WordOther"/>
+    </entity>
+    <entity name="WordOther" representedClassName="WordOther" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="YES" attributeType="String"/>
+        <attribute name="imageDict" optional="YES" attributeType="String"/>
+        <attribute name="imageWord" optional="YES" attributeType="String"/>
+        <attribute name="nameDict" optional="YES" attributeType="String"/>
+        <attribute name="wordOrig" optional="YES" attributeType="String"/>
+        <attribute name="wordTrans" optional="YES" attributeType="String"/>
+        <relationship name="relationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Dict" inverseName="relationship" inverseEntity="Dict"/>
+    </entity>
+    <elements>
+        <element name="Dict" positionX="-63" positionY="27" width="128" height="59"/>
+        <element name="WordOther" positionX="-63" positionY="-18" width="128" height="134"/>
+    </elements>
+</model>
