@@ -17,6 +17,7 @@ struct AnyWordsView: View {
             HStack {
                 ImageView(imageShow: viewModel.imageAnyWordList)
                 Text(viewModel.anyWordsNameLesson)
+                
             }.padding()
             Spacer()
             
@@ -25,6 +26,17 @@ struct AnyWordsView: View {
         }
     }
 }
+
+
+
+
+extension AnyWordsView {
+
+
+    
+}
+
+
 
 struct AnyWordsView_Previews: PreviewProvider {
     static var previews: some View {

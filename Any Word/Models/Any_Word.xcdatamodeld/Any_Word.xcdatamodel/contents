@@ -1,20 +1,26 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="20086" systemVersion="21E230" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="Dict" representedClassName="Dict" syncable="YES" codeGenerationType="class">
+    <entity name="DictAny" representedClassName="DictAny" syncable="YES">
         <attribute name="nameDict" optional="YES" attributeType="String"/>
-        <relationship name="relationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WordOther" inverseName="relationship" inverseEntity="WordOther"/>
+        <relationship name="relationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Lesson" inverseName="relationship" inverseEntity="Lesson"/>
+    </entity>
+    <entity name="Lesson" representedClassName="Lesson" syncable="YES">
+        <attribute name="lsTheme" optional="YES" attributeType="Transformable"/>
+        <attribute name="nameDict" optional="YES" attributeType="String"/>
+        <relationship name="relationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DictAny" inverseName="relationship" inverseEntity="DictAny"/>
     </entity>
     <entity name="WordOther" representedClassName="WordOther" syncable="YES" codeGenerationType="class">
-        <attribute name="id" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="imageDict" optional="YES" attributeType="String"/>
         <attribute name="imageWord" optional="YES" attributeType="String"/>
         <attribute name="nameDict" optional="YES" attributeType="String"/>
         <attribute name="wordOrig" optional="YES" attributeType="String"/>
         <attribute name="wordTrans" optional="YES" attributeType="String"/>
-        <relationship name="relationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Dict" inverseName="relationship" inverseEntity="Dict"/>
+        <relationship name="relationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DictAny"/>
     </entity>
     <elements>
-        <element name="Dict" positionX="-63" positionY="27" width="128" height="59"/>
+        <element name="DictAny" positionX="-63" positionY="27" width="128" height="59"/>
+        <element name="Lesson" positionX="-54" positionY="45" width="128" height="74"/>
         <element name="WordOther" positionX="-63" positionY="-18" width="128" height="134"/>
     </elements>
 </model>

@@ -9,21 +9,28 @@
 import SwiftUI
 
 struct AddWordView: View {
+    @Environment(\.managedObjectContext) private var viewContext
+    
     @Binding var showAddWordView: Bool
     @Binding var inputNameLesson: String
     
     @State var inputOrigWord = ""
     @State var inputTranslWord = ""
-        
-    @State var tempos = [WordOtherM]()
     
-    func tempSave(anyWordOtherM: WordOtherM) {
+    @State var tempos = [WordOtherM]()
+    @State var tempos1 = WordOtherM.self
+    
+//    private var tempos: [WordOtherM] = []
+    
+    mutating func tempSave(anyWordOtherM: WordOtherM) {
         var anyWordOtherMs = [WordOtherM]()
         anyWordOtherMs.append(anyWordOtherM)
         print(anyWordOtherMs)
         tempos.append(anyWordOtherM)
         print(tempos)
+//        StorageManager.shared.save(wordOther: tempos)
     }
+    
     
     
     var body: some View {
@@ -31,31 +38,29 @@ struct AddWordView: View {
             VStack {
                 Text("Добавим слова в тему:\n \(inputNameLesson)")
                     .multilineTextAlignment(.center)
-                .padding()
+                    .padding()
                 
                 VStack {
                     TextField("Напиши оригинал слова", text: $inputOrigWord)
                     TextField("Напиши перевод слова", text: $inputTranslWord)
                 }.padding(.horizontal)
-            
+                
                 Button(action: {
                     print("Save tapped!")
-                    tempSave(anyWordOtherM: WordOtherM.init(
-                        id: UUID(),
-                        imageDict: "empty",
-                        imageWord: "empty",
-                        nameDict: inputNameLesson,
-                        wordOrig: inputOrigWord,
-                        wordTrans: inputTranslWord)
-                    )
+//                    tempSave(anyWordOtherM: WordOtherM.init(
+//                        id: UUID(),
+//                        imageDict: "empty",
+//                        imageWord: "empty",
+//                        nameDict: inputNameLesson,
+//                        wordOrig: inputOrigWord,
+//                        wordTrans: inputTranslWord)
+//                    )
                 }) {
                     HStack {
                         Spacer()
                         Image(systemName: "arrow.down.circle.fill")
-//                            .font(.title)
                         Text("Добавить")
                             .fontWeight(.semibold)
-//                            .font(.title)
                         Spacer()
                     }
                     .padding(10)
@@ -76,39 +81,14 @@ struct AddWordView: View {
                     }.padding(.horizontal, 40)
                     
                     List {
-                        
-                        
-                            VStack {
-                                ForEach(tempos, id: \.id) { temp in
-                                    RowView(wordOriginal: temp.wordOrig,
-                                            wordTrabslate: temp.wordTrans)
-                                }
+                        VStack {
+                            ForEach(tempos, id: \.id) { temp in
+                                RowView(wordOriginal: temp.wordOrig,
+                                        wordTrabslate: temp.wordTrans)
                             }
-                        
-                        
-                       
-                            
-                        
-                            
-                            
-                            
-        //                    Text("Оригинал слова")
-        //                    Spacer()
-        //                    Text("Первод слова")
-        //                    Button(action: {
-        //                        print("Delete tapped!")
-        //                    }) {
-        //                        HStack {
-        //                            Image(systemName: "trash")
-        //                        }
-        //                        .padding()
-        //                        .foregroundColor(.red)
-        //                    }
+                        }
                     }
                 }
-//                }
-//                .padding()
-
             }
             
             Spacer()
@@ -119,7 +99,19 @@ struct AddWordView: View {
                 }.padding()
                 
                 Button("Сохранить") {
-                    showAddWordView.toggle()
+                    
+                
+                    let newWordOther = WordOther(context: viewContext)
+
+                    newWordOther.id = UUID()
+                    
+                    do {
+                        try viewContext.save()
+                        showAddWordView.toggle()
+                    } catch {
+                        print(error.localizedDescription)
+                    }
+                    
                 }.padding()
             }
             
@@ -127,13 +119,6 @@ struct AddWordView: View {
     }
 }
 
-
-
-extension AddWordView {
-    
-
-
-}
 
 struct AddWordView_Previews: PreviewProvider {
     static var previews: some View {

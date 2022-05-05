@@ -27,6 +27,7 @@ struct LessonNewView: View {
             }
             
             HStack {
+                Spacer()
                 Button(action: {}) {
                     HStack {
                         Text("Сложная тема")
@@ -44,6 +45,7 @@ struct LessonNewView: View {
             }.padding(.horizontal)
             
             HStack {
+                Spacer()
                 Button(action: {}) {
                     HStack {
                         Text("Сложная тема")

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct WordOtherM: Decodable {
+struct WordOtherM: Codable {
     let id: UUID
     let imageDict: String
     let imageWord: String
@@ -27,7 +27,7 @@ struct WordOtherM: Decodable {
     }
 }
 
-struct AnyWordList: Decodable {
+struct AnyWordList: Codable {
     let anyWordsNameLesson: String
     let imageAnyWordList: String
     

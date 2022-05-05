@@ -15,7 +15,7 @@ struct Any_WordApp: App {
     
     var body: some Scene {
         WindowGroup {
-            StartView()
+            NewStartView()
                 .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
         }
 //        .onChange(of: scenePhase) { _ in persistenceController.save() }

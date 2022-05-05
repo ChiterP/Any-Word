@@ -16,7 +16,7 @@ struct PersistenceController {
         let controller = PersistenceController(inMemory: true)
 
         for _ in 0..<10 {
-            let dictAny = Dict(context: controller.container.viewContext)
+            let dictAny = DictAny(context: controller.container.viewContext)
             dictAny.nameDict = "Example Language 1"
             //                    language.creator = "A. Programmer"
         }
@@ -54,8 +54,8 @@ struct PersistenceController {
         }
     }
     
-    public static func fetchRequestDict() -> NSFetchRequest<Dict> {
-        return NSFetchRequest<Dict>(entityName: "Dict")
+    public static func fetchRequestDict() -> NSFetchRequest<DictAny> {
+        return NSFetchRequest<DictAny>(entityName: "DictAny")
     }
     
     public static func fetchRequestWord() -> NSFetchRequest<WordOther> {
